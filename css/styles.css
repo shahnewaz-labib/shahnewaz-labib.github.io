@@ -20,6 +20,7 @@ body {
     font-size: calc(1em + 0.33vw);
     /* font-family: Arial, Helvetica Neue, sans-serif; */
     font-family: Ubuntu Mono;
+    src: url('UbuntuMono-Regular.ttf') format('truetype');
     /* font-family: 'Miriam Libre'; */
     line-height: 1.5;
     color: #111;
