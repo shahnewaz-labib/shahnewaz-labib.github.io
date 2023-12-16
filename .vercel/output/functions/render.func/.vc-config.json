@@ -1,0 +1,1 @@
+{"runtime":"nodejs21.x","handler":"dist/entry.js","launcherType":"Nodejs"}
