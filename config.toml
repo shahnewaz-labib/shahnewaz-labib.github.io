@@ -24,8 +24,9 @@ menu = [
 ]
 
 socials = [
-    { name = "twitter", url = "https://twitter.com/newazSidd", icon = "twitter" },
+    # { name = "twitter", url = "https://twitter.com/newazSidd", icon = "twitter" },
     { name = "github", url = "https://github.com/shahnewaz-labib", icon = "github" },
+    { name = "linkedin", url = "https://www.linkedin.com/in/shahnewaz-labib/", icon = "linkedin" },
 ]
 
 custom_css = []
