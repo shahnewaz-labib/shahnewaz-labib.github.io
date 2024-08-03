@@ -10,6 +10,8 @@ taxonomies = [{ name = "tags" }]
 [markdown]
 highlight_code = true
 highlight_theme = "ayu-light"
+mathjax = true
+mathjax_dollar_inline_enable = true
 
 [extra]
 use_cdn = false

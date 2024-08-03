@@ -1,5 +1,5 @@
 +++
-title= "Apollo Theme"
+title= "Posts"
 template = "homepage.html"
 +++
 
