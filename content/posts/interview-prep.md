@@ -507,29 +507,3 @@ int *numberPointer = &number;
 // Reinterpreting the pointer as a char pointer
 char *charPointer = reinterpret_cast<char *>(numberPointer);
 ```
-
-### Tell me about yourself
-
-- I'm Md. Shahnewaz Siddique.
-- I completed my undergrad from Islamic University of Technology in Computer Science and Engineering.
-- During my 4 years of undergrad, I tried to explore different domains of CS.
-- I was involved in competitive programming, with 160+ online contests and 1.5k+ solved problems.
-- I explored the domain of cyber security, participated and won awards in a few national and international CTFs.
-- I participated in hackathons as well, winning the 2nd place in the recent one that I did.
-- I am interested in robotics as well. I am a founding member of Project Aero, the drone wing of IUT Robotics Society.
-- I was an intern for Bindulogic where I worked as a fullstack engineer and built a business facing SMS campaign platform.
-- Last but not the least, I have done my thesis in NLP where I worked on bangla language.
-  <!---->
-  <!-- ### asked about projects -->
-  <!---->
-  <!-- ### asked about github -->
-  <!---->
-  <!-- ### How should we remember you -->
-  <!---->
-  <!-- ### what do you expect from us -->
-  <!---->
-  <!-- ### expected salary -->
-  <!---->
-  <!-- ### cc bepare ki jano -->
-  <!---->
-  <!-- ### cc er manush bepare ki jano -->
