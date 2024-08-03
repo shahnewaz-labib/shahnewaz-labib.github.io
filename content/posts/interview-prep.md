@@ -9,7 +9,7 @@ tags=["interview"]
 repo_view = true
 +++
 
-# Intro
+# Background
 
 Things I prepared in 1 day for an interview for a specific company. Not organized. At all.
 Strategy: Put everything in one place. CTRL+F when needed.
@@ -23,7 +23,7 @@ This makes the code more **redable**, **reusable** and **maintainable**.
 
 Concepts of OOP consist of but not limited to:
 
-1. Abstration
+1. Abstraction
 2. Encapsulation
 3. Inheritance
 4. Polymorphism
@@ -110,10 +110,10 @@ Can be both for methods and operators.
 
 ```cpp
 class OverloadingExample {
-    static int add(int a, int b) {
+    int add(int a, int b) {
         return a + b;
     }
-    static int add(int a, int b, int c) {
+    int add(int a, int b, int c) {
         return a + b + c;
     }
 };
