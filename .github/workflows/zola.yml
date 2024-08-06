@@ -17,11 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Ensure CNAME file
-        run: |
-          echo 'blog.shahnewazlabib.com' > CNAME
-
       - name: Build and deploy
         uses: shalzz/zola-deploy-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Ensure CNAME file
+        run: |
+          echo 'blog.shahnewazlabib.com' > CNAME
