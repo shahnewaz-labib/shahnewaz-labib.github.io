@@ -22,6 +22,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Ensure CNAME file
+      - name: Checkout gh-pages branch
         run: |
+          git fetch origin
+          git checkout gh-pages
           echo 'blog.shahnewazlabib.com' > CNAME
+          git add CNAME
+          git commit -m "Add CNAME file"
+          git push origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }
