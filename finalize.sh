@@ -1,4 +1,3 @@
-git pull
 git checkout gh-pages
 echo "blog.shahnewazlabib.com" > CNAME
 git add CNAME
