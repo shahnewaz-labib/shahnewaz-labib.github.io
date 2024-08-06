@@ -22,13 +22,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Stash changes
+        run: |
+          git stash
+  
       - name: Checkout gh-pages branch
         run: |
           git fetch origin
           git checkout gh-pages
+  
+      - name: Apply stash
+        run: |
+          git stash pop
+  
+      - name: Ensure CNAME file
+        run: |
           echo 'blog.shahnewazlabib.com' > CNAME
           git add CNAME
           git commit -m "Add CNAME file"
           git push origin gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
