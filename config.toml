@@ -19,21 +19,13 @@ theme = "toggle"
 
 menu = [
     { name = "/posts", url = "/posts", weight = 1 },
-    # { name = "/tags", url = "/tags", weight = 2 },
+    { name = "/tags", url = "/tags", weight = 2 },
     # { name = "/projects", url = "/projects", weight = 3 },
     # { name = "/talks", url= "/talks", weight= 4 },
-    # { name = "/about", url = "/about", weight = 5 },
+    { name = "/about", url = "/about", weight = 5 },
 ]
 
 socials = [
     { name = "github", url = "https://github.com/shahnewaz-labib/", icon = "github" },
+    { name = "linkedin", url = "https://www.linkedin.com/in/shahnewaz-labib", icon = "linkedin" },
 ]
-
-[extra.analytics]
-enabled = true
-
-[extra.analytics.goatcounter]
-user = "not-matthias"
-
-[extra.analytics.umami]
-website_id = "74344cd8-1e87-4c38-8acd-f96049b8f07e"

@@ -9,8 +9,6 @@ tags=["interview"]
 repo_view = true
 +++
 
-<!-- Test -->
-
 # Background
 
 Things I prepared in 1 day for an interview for a specific company. Not organized. At all.

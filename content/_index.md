@@ -1,8 +1,4 @@
 +++
-title= "Posts"
-template = "homepage.html"
+[extra]
+section_path = "posts/_index.md"
 +++
-
-Thanks for checking out this theme!
-
-Checkout all the [options you can configure](./posts/configuration) and the [example pages](./tags/example/).
