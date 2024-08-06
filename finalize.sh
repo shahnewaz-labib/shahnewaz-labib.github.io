@@ -4,4 +4,4 @@ echo "blog.shahnewazlabib.com" > CNAME
 git add CNAME
 git commit -m "Finalize"
 git push
-git checkout master
+git checkout main
