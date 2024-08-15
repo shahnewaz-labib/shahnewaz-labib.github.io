@@ -139,7 +139,7 @@ class Dog : public Animal {
 - Results in diamond shaped hierarchy.
 - Compiler become uncertain about which superclass's attributes to prioritize.
 
-![Diamond Inheritance problem diagram 1](/posts/Diamond_inheritance.svg)
+![Diamond Inheritance problem diagram 1](/posts/diamond-inheritance-1.png)
 ![Diamond Inheritance problem diagram 2](/posts/diamond-inheritance-2.png)
 
 To prevent:

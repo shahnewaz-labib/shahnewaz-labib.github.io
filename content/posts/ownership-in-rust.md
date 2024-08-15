@@ -65,6 +65,8 @@ Because doing so is really fast as we know the size and the location to store th
 
 The copy operation in the heap results in both `s1` and `s2` pointing to the same memory location.
 
+<img src="/posts/s1-s2-memory-diagram.png" alt="s1 s2 memory diagram" width="400"/>
+
 Why? Because copying the data in the heap is expensive and we don't want to duplicate the data.
 
 But what happens when `s1` goes out of scope? The memory is deallocated and `s2` is left with a `dangling pointer`.
