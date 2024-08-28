@@ -1,6 +1,7 @@
 +++
 title = "Interview prep notes"
 date = "2024-07-29"
+draft = true
 
 [taxonomies]
 tags=["interview", "oop", "cpp", "casting", "memory management"]
