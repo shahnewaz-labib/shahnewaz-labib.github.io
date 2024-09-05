@@ -44,7 +44,7 @@ We need to understand the difference between the two to understand ownership in 
   - returns a pointer to the allocated memory.
 - Because of this overhead, heap allocation is slower than stack allocation.
 
-For more information, have a look at this beautiful article [here](https://samwho.dev/memory-allocation/)
+There's this beautiful article [here](https://samwho.dev/memory-allocation/) about this.
 
 ## Code Example
 
