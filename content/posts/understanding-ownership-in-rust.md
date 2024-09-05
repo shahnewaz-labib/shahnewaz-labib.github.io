@@ -1,5 +1,5 @@
 +++
-title = "Ownership in Rust"
+title = "Understanding Ownership in Rust"
 date = "2024-08-06"
 
 [taxonomies]
