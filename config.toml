@@ -7,25 +7,25 @@ minify_html = true
 theme = "apollo"
 taxonomies = [{ name = "tags" }]
 
-[markdown]
-highlight_code = true
-highlight_theme = "ayu-light"
-mathjax = true
-mathjax_dollar_inline_enable = true
+# [markdown.highlighting]
 
 [extra]
 use_cdn = false
 theme = "toggle"
 
+[extra.math]
+enable = true
+dollar_inline_enable = true
+
 menu = [
-    { name = "/posts", url = "/posts", weight = 1 },
-    { name = "/tags", url = "/tags", weight = 2 },
-    # { name = "/projects", url = "/projects", weight = 3 },
-    # { name = "/talks", url= "/talks", weight= 4 },
-    { name = "/about", url = "/about", weight = 5 },
+  { name = "/posts", url = "/posts", weight = 1 },
+  { name = "/tags", url = "/tags", weight = 2 },
+  # { name = "/projects", url = "/projects", weight = 3 },
+  # { name = "/talks", url= "/talks", weight= 4 },
+  { name = "/about", url = "/about", weight = 5 },
 ]
 
 socials = [
-    { name = "github", url = "https://github.com/shahnewaz-labib/", icon = "github" },
-    { name = "linkedin", url = "https://www.linkedin.com/in/shahnewaz-labib", icon = "linkedin" },
+  { name = "github", url = "https://github.com/shahnewaz-labib/", icon = "github" },
+  { name = "linkedin", url = "https://www.linkedin.com/in/shahnewaz-labib", icon = "linkedin" },
 ]
