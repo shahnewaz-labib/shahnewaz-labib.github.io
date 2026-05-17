@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>shahnewaz-labib</title>
+    <link rel="self" type="application/atom+xml" href="https://shahnewaz-labib.github.io/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://shahnewaz-labib.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-08-06T00:00:00+00:00</updated>
+    <id>https://shahnewaz-labib.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Understanding Ownership in Rust</title>
+        <published>2024-08-06T00:00:00+00:00</published>
+        <updated>2024-08-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://shahnewaz-labib.github.io/posts/understanding-ownership-in-rust/"/>
+        <id>https://shahnewaz-labib.github.io/posts/understanding-ownership-in-rust/</id>
+        
+        <content type="html" xml:base="https://shahnewaz-labib.github.io/posts/understanding-ownership-in-rust/">&lt;h1 id=&quot;introduction&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#introduction&quot; aria-label=&quot;Anchor link for: introduction&quot;&gt;Introduction&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Different languages have different ways of managing memory.
+In C, we have to manually allocate and deallocate memory.
+In Java, we have a &lt;code&gt;garbage collector (GC)&lt;&#x2F;code&gt; that automatically deallocates memory.&lt;&#x2F;p&gt;
+&lt;p&gt;Rust has a unique approach to memory management called ownership that guarantees memory safety without a GC.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;prerequisites&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#prerequisites&quot; aria-label=&quot;Anchor link for: prerequisites&quot;&gt;Prerequisites&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Rust values behave differently based on whether they are &lt;code&gt;stack-allocated&lt;&#x2F;code&gt; or &lt;code&gt;heap-allocated&lt;&#x2F;code&gt;.
+We need to understand the difference between the two to understand ownership in Rust.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;stack&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#stack&quot; aria-label=&quot;Anchor link for: stack&quot;&gt;Stack&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Stack is a LIFO (Last in, First out) data structure that stores values in a fixed order.&lt;&#x2F;li&gt;
+&lt;li&gt;The data we push to the stack has to have a known, fixed size at compile time.&lt;&#x2F;li&gt;
+&lt;li&gt;It is more organized and has less overhead as we know exactly where to push to and pop from.&lt;&#x2F;li&gt;
+&lt;li&gt;This makes stack allocation faster than heap allocation.&lt;&#x2F;li&gt;
+&lt;li&gt;The function call stack is an example of a stack data structure.&lt;&#x2F;li&gt;
+&lt;li&gt;The function context is pushed to the stack when a function is called and popped when the function returns.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;heap&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#heap&quot; aria-label=&quot;Anchor link for: heap&quot;&gt;Heap&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Heap is less organized than stack.&lt;&#x2F;li&gt;
+&lt;li&gt;It is a pool of memory that can grow dynamically.&lt;&#x2F;li&gt;
+&lt;li&gt;At compile time, we don&#x27;t know the size of the data we will push to the heap.&lt;&#x2F;li&gt;
+&lt;li&gt;At runtime, necessary amount of memory is requested and the&lt;&#x2F;li&gt;
+&lt;li&gt;Memory allocator -
+&lt;ul&gt;
+&lt;li&gt;finds a suitable place in the heap,&lt;&#x2F;li&gt;
+&lt;li&gt;marks it as used&lt;&#x2F;li&gt;
+&lt;li&gt;performs some bookkeeping&lt;&#x2F;li&gt;
+&lt;li&gt;returns a pointer to the allocated memory.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Because of this overhead, heap allocation is slower than stack allocation.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;There&#x27;s this beautiful article &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;samwho.dev&#x2F;memory-allocation&#x2F;&quot;&gt;here&lt;&#x2F;a&gt; about this.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;code-example&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#code-example&quot; aria-label=&quot;Anchor link for: code-example&quot;&gt;Code Example&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;let x = 5; &#x2F;&#x2F; known, fixed size: stored on stack
+let y = x;
+
+let s1 = String::from(&amp;quot;Hello&amp;quot;); &#x2F;&#x2F; mutable, dynamic: stored on heap
+let s2 = s1;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;ownership&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#ownership&quot; aria-label=&quot;Anchor link for: ownership&quot;&gt;Ownership&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;The copy operation in the stack is a shallow copy. The value is copied to a new location in memory.&lt;&#x2F;p&gt;
+&lt;p&gt;Why?
+Because doing so is really fast as we know the size and the location to store the value.&lt;&#x2F;p&gt;
+&lt;p&gt;The copy operation in the heap results in both &lt;code&gt;s1&lt;&#x2F;code&gt; and &lt;code&gt;s2&lt;&#x2F;code&gt; pointing to the same memory location.&lt;&#x2F;p&gt;
+&lt;img src=&quot;&#x2F;posts&#x2F;s1-s2-memory-diagram.png&quot; alt=&quot;s1 s2 memory diagram&quot; width=&quot;400&quot;&#x2F;&gt;
+&lt;p&gt;Why? Because copying the data in the heap is expensive and we don&#x27;t want to duplicate the data.&lt;&#x2F;p&gt;
+&lt;p&gt;But what happens when &lt;code&gt;s1&lt;&#x2F;code&gt; goes out of scope? The memory is deallocated and &lt;code&gt;s2&lt;&#x2F;code&gt; is left with a &lt;code&gt;dangling pointer&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This is where ownership comes into play.
+When the move operation happens, the ownership of the memory is transferred to the new variable.
+So, when &lt;code&gt;s1&lt;&#x2F;code&gt; goes out of scope, it doesn&#x27;t deallocate the memory and &lt;code&gt;s2&lt;&#x2F;code&gt; is still valid. After the move operation, we can&#x27;t use &lt;code&gt;s1&lt;&#x2F;code&gt; anymore.
+Memory deallocation is now dependent on whether &lt;code&gt;s2&lt;&#x2F;code&gt; is in scope or not.&lt;&#x2F;p&gt;
+&lt;p&gt;This is the essense of ownership in Rust.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;ownership-rules&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#ownership-rules&quot; aria-label=&quot;Anchor link for: ownership-rules&quot;&gt;Ownership Rules&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Each value in Rust has a variable that is its owner.&lt;&#x2F;li&gt;
+&lt;li&gt;There can only be one owner at a time.&lt;&#x2F;li&gt;
+&lt;li&gt;When the owner goes out of scope, the value is dropped.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The compiler enforces these rules at compile time.
+The program wouldn&#x27;t compile if we violate these rules.
+This guarantees memory safety without a garbage collector.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;ownership-can-be-transferred&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#ownership-can-be-transferred&quot; aria-label=&quot;Anchor link for: ownership-can-be-transferred&quot;&gt;Ownership can be Transferred&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;Ownership can be transferred by moving the value to a new variable.
+After the move operation, the old variable is no longer valid.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;fn main() {
+    let s3 = takes_and_gives_back(s2);
+}
+fn takes_and_gives_back(a_string: String) -&amp;gt; String {
+    a_string
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;ownership-can-be-borrowed&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#ownership-can-be-borrowed&quot; aria-label=&quot;Anchor link for: ownership-can-be-borrowed&quot;&gt;Ownership can be Borrowed&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;We can borrow a value without transferring ownership.
+We can borrow a value as immutable or mutable.&lt;&#x2F;p&gt;
+&lt;p&gt;We can have multiple immutable borrows but only one mutable borrow at a time.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;fn main() {
+    let s1 = String::from(&amp;quot;Hello&amp;quot;);
+    let len = calculate_length(&amp;amp;s1);
+}
+fn calculate_length(s: &amp;amp;String) -&amp;gt; usize {
+    s.len()
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;deep-copy-instead-of-move&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#deep-copy-instead-of-move&quot; aria-label=&quot;Anchor link for: deep-copy-instead-of-move&quot;&gt;Deep Copy instead of Move&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;We can clone a value to create a deep copy.
+The cloned value is a separate copy and has its own memory.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;rust&quot;&gt;fn main() {
+    let s1 = String::from(&amp;quot;Hello&amp;quot;);
+    let s2 = s1.clone();
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;&gt;Conclusion&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;p&gt;This is a high-level overview of ownership in Rust, a note to self.&lt;&#x2F;p&gt;
+&lt;p&gt;Of course, these are oversimplified explanations.
+The Rust book has a more detailed explanation of ownership.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;references&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#references&quot; aria-label=&quot;Anchor link for: references&quot;&gt;References&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;ch04-00-understanding-ownership.html&quot;&gt;The Rust Programming Language&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+        
+    </entry>
+</feed>
